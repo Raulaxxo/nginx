@@ -2,7 +2,7 @@
 
 FROM nginx:stable-alpine3.17-slim
 
-WORKDIR /nginx
+#WORKDIR /nginx
 
 # Expose port 80
 EXPOSE 80
