@@ -20,5 +20,5 @@ services:
    - host.docker.internal:172.17.0.1
    - gateway.docker.internal:172.17.0.1
   volumes: 
-   - '/.conf_nginx:/etc/nginx/'
+   - './conf_nginx:/etc/nginx/'
 #${} 
