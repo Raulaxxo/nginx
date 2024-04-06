@@ -1,6 +1,6 @@
 version: '3.8'
 services:
- kaillera:
+${registry}:
   hostname: ${registry}
   image: raulaxxo/${registry}:${version}
   logging:
@@ -15,7 +15,7 @@ services:
    - '443:443'
   environment:
    - TZ=America/Santiago
-  network_mode: host
+  network_mode: bridge
   extra_hosts:
    - host.docker.internal:172.17.0.1
    - gateway.docker.internal:172.17.0.1
