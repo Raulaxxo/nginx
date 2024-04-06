@@ -15,7 +15,7 @@ services:
    - '443:443'
   environment:
    - ENV_URL=raulaxxo.cl
-   - ENV_dir=/var/www/
+   - ENV_DIR=links
    - TZ=America/Santiago
   network_mode: bridge
   extra_hosts:
