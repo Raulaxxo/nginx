@@ -14,6 +14,8 @@ services:
    - '80:80'
    - '443:443'
   environment:
+   - ENV_URL=raulaxxo.cl
+   - ENV_dir=/var/www/
    - TZ=America/Santiago
   network_mode: bridge
   extra_hosts:
@@ -21,4 +23,5 @@ services:
    - gateway.docker.internal:172.17.0.1
   volumes: 
    - './conf_nginx:/etc/nginx/'
+   - './www/:/var/www'
 #${} 

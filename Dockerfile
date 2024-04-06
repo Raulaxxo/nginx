@@ -2,6 +2,9 @@
 
 FROM nginx:stable-alpine3.17-slim
 
+ENV ENV_DIR linsk2
+ENV ENV_URL raulaxxo.com
+
 #WORKDIR /nginx
 
 # Expose port 80
