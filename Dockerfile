@@ -10,7 +10,7 @@ ENV ENV_URL="raulaxxo.com"
 
 RUN cd /etc/nginx/conf.d/ 
 
-RUN cp base.vhost "$ENV_URL.conf"
+#RUN cp base.vhost "$ENV_URL.conf"
 
 # Expose port 80
 EXPOSE 80
