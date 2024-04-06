@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+ kaillera:
+  hostname: ${registry}
+  image: raulaxxo/${registry}:${version}
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "3"
+      max-size: "10m"
+  container_name: ${registry}
+  restart: always
+  ports:
+   - '80:80'
+   - '443:443'
+  environment:
+   - TZ=America/Santiago
+  network_mode: host
+  extra_hosts:
+   - host.docker.internal:172.17.0.1
+   - gateway.docker.internal:172.17.0.1
+  #volumes: 
+#   - '/data/sitios:/data/sitios/'
+#   - './mnt/:/mnt/'
+#  mem_limit: 1000m
+#${} 
