@@ -8,7 +8,8 @@ WORKDIR /etc/nginx
 ENV ENV_DIR="linsk2"
 ENV ENV_URL="raulaxxo.com"
 
-RUN cd /etc/nginx/conf.d/ && cp base.vhost $ENV_URL.conf
+RUN cd /etc/nginx/conf.d/ 
+RUN cp base.vhost $${ENV_URL}.conf
 
 # Expose port 80
 EXPOSE 80
