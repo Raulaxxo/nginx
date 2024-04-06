@@ -19,8 +19,6 @@ services:
   extra_hosts:
    - host.docker.internal:172.17.0.1
    - gateway.docker.internal:172.17.0.1
-  #volumes: 
-#   - '/data/sitios:/data/sitios/'
-#   - './mnt/:/mnt/'
-#  mem_limit: 1000m
+  volumes: 
+   - '/.conf_nginx:/etc/nginx/'
 #${} 
