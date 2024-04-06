@@ -21,7 +21,7 @@ jobs:
     - name: Build and push Docker image
       run: |
         source .env
-        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/nginx:$version .
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/:$version
+        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/$registry:$version .
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$registry:$version
       env:
         DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
