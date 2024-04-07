@@ -1,11 +1,11 @@
 server {
     listen 80;
-    server_name ${ENV_URL} www.${ENV_URL}
+    server_name $ENV_URL www.$ENV_URL
 
      root /var/www/${ENV_DIR};  # Adjust this to the actual path of your application files
 
-    access_log /var/log/nginx/${ENV_URL}.access.log;
-    error_log /var/log/nginx/${ENV_URL}.error.log;
+    access_log /var/log/nginx/$ENV_URL.access.log;
+    error_log /var/log/nginx/$ENV_URL.error.log;
 
     location / {
         try_files $uri $uri/ =404;

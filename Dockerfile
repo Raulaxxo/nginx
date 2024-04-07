@@ -5,12 +5,11 @@ FROM nginx:stable-alpine3.17-slim
 WORKDIR /etc/nginx
 RUN apk add nano 
 
-ARG ENV_DIR
-ARG ENV_URL
+ENV ENV_DIR=links
+ENV ENV_URL=raulaxxo.com
 
-RUN cd /etc/nginx/conf.d/ 
-
-RUN cp base.vhost $ENV_URL".conf"
+ADD conf_nginx/conf.d/base.vhost conf.d
+RUN cd conf.d && cp base.vhost ${ENV_URL}.conf
 
 # Expose port 80
 EXPOSE 80
