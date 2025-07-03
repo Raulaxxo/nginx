@@ -11,7 +11,8 @@ ENV ENV_URL=raulaxxo.com
 ADD conf_nginx/conf.d/base.vhost conf.d
 RUN cd conf.d && cp base.vhost ${ENV_URL}.conf
 
-# Expose port 80
+# Expose port 80}
+# This is the default port for Nginx
 EXPOSE 80
 
 # Start Nginx server
