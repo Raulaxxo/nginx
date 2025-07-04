@@ -2,7 +2,7 @@ server {
     listen 80;
     server_name ${ENV_URL} www.${ENV_URL};
 
-    root /var/www/${ENV_DIR}/;
+    root /var/www/${ENV_DIR};
 
     access_log /var/log/nginx/${ENV_URL}.access.log;
     error_log /var/log/nginx/${ENV_URL}.error.log;
