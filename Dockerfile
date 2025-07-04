@@ -2,6 +2,7 @@
 # Dockerfile para Nginx con Alpine Linux
 # Basado en nginx:stable-alpine3.17-slim
 # https://hub.docker.com/_/nginx
+## Este Dockerfile crea una imagen de Nginx con Alpine Linux, configurada para servir contenido estático.
 
 FROM nginx:stable-alpine3.17-slim
 
