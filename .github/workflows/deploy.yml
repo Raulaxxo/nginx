@@ -1,0 +1,42 @@
+name: Deploy via SSH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy on remote server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.REMOTE_PORT || 22 }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Connect and deploy
+        env:
+          REPO: "git@github.com:Raulaxxo/nginx.git"       
+          DIR: "/docker"                                  
+        run: |
+          ssh -p ${{ secrets.REMOTE_PORT || 22 }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
+            set -e
+            if [ -d "$DIR/.git" ]; then
+              echo "Repositorio ya existe. Haciendo git pull..."
+              cd $DIR
+              git pull origin main
+            else
+              echo "Repositorio no existe. Clonando..."
+              git clone $REPO $DIR
+              cd $DIR
+            fi
+
+            echo "Actualizando Docker..."
+            docker compose down || true
+            docker compose pull || true
+            docker compose up -d --build
+          EOF
