@@ -7,8 +7,11 @@ on:
 
 jobs:
   deploy:
-    name: Deploy on remote server
     runs-on: ubuntu-latest
+
+    env:
+      REPO: "git@github.com:Raulaxxo/nginx.git"  # <-- personaliza esto
+      DIR: "/docker/nginx"
 
     steps:
       - name: Set up SSH
@@ -19,24 +22,22 @@ jobs:
           ssh-keyscan -p ${{ secrets.REMOTE_PORT || 22 }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
 
       - name: Connect and deploy
-        env:
-          REPO: "git@github.com:Raulaxxo/nginx.git"       
-          DIR: "/docker"                                  
         run: |
-          ssh -p ${{ secrets.REMOTE_PORT || 22 }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT || 22 }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "
             set -e
-            if [ -d "$DIR/.git" ]; then
-              echo "Repositorio ya existe. Haciendo git pull..."
+
+            if [ -d $DIR/.git ]; then
+              echo 'Repositorio ya existe. Haciendo git pull...'
               cd $DIR
               git pull origin main
             else
-              echo "Repositorio no existe. Clonando..."
+              echo 'Repositorio no existe. Clonando...'
               git clone $REPO $DIR
               cd $DIR
             fi
 
-            echo "Actualizando Docker..."
+            echo 'Actualizando Docker...'
             docker compose down || true
             docker compose pull || true
             docker compose up -d --build
-          EOF
+          "
