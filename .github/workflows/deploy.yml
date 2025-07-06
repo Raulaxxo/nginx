@@ -1,9 +1,14 @@
 name: Deploy via SSH
 
 on:
+  workflow_run:
+    workflows: ["Docker Build and Publish"]  # 👈 usa el mismo nombre que aparece en tu build.yml → name:
+    types:
+      - completed
+
   push:
-    branches:
-      - main
+    paths:
+      - .github/workflows/deploy.yml  
 
 jobs:
   deploy:
