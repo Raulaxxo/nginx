@@ -11,9 +11,9 @@ jobs:
 
     env:
       REPO: "git@github.com:Raulaxxo/nginx.git"  # <-- personaliza esto
-      DIR: "/docker/"
+      DIR: "/docker"
     
-      
+
 
     steps:
       - name: Set up SSH
