@@ -3,7 +3,7 @@
 # Basado en nginx:stable-alpine3.17-slim
 # https://github.com/Raulaxxo/nginx.git
 ## Este Dockerfile crea una imagen de Nginx con Alpine Linux, configurada para servir contenido estático.
-#version=alpine-1.0.2
+#version=alpine-1.0.3
 
 FROM nginx:stable-alpine3.17-slim
 
